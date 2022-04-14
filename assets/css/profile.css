@@ -1,6 +1,7 @@
 #whole-profile{
     display: flex;
     flex-direction: row;
+    min-height: 100%;
 }
 
 #info{

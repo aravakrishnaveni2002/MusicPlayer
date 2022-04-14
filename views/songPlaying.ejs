@@ -1,0 +1,34 @@
+<% if(songPlaying != 'null') {%>
+    <div class="each-song song-playing" id="each-song-<%=songPlaying._id%>">
+        <div class="song-info">
+            <img class="song-photo" src="<%=songPlaying.photo%>" alt="">
+            <div class="details">
+                <div>
+                    <span class="song-name"><%=songPlaying.name%></span>
+                    <br>
+                    <span class="song-artist"><%=songPlaying.artist%></span>
+                </div>
+                <div class="controls">
+                    <% if(locals.user) {%> 
+                        <% for (fav of songPlaying.likedby) { %>
+                            <% if(fav.user == locals.user.id) {%>
+                                <a href="/user/favourite/toggle-fav/?song_id=<%=songPlaying._id%>&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>
+                            <% } else{%> 
+                                <a href="/user/favourite/toggle-fav/?song_id=<%=songPlaying._id%>&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart" ></i></a>
+                            <% } %>    
+                        <% } %>
+                        
+                        <% if(songPlaying.likedby.length == 0) {%>
+                            <a href="/user/favourite/toggle-fav/?song_id=<%=songPlaying._id%>&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart" ></i></a>
+                        <%}%>
+                        <a href="" class="add-que"><i class="fas fa-plus"></i></a>
+                    <% } %>    
+                </div>
+            </div>
+            
+        
+        </div>
+        <a href="/user/play/?song_id=<%=songPlaying._id%>" class="play-btn" id="play-btn-<%=songPlaying._id%>"><i class="fas fa-play"></i></a>
+        <audio class="audio"></audio>
+    </div>
+    <% } %>

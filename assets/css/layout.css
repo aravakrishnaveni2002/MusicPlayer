@@ -20,7 +20,7 @@ body{
     align-items: center;
     font-size: 40px;
     margin-bottom: 50px;
-    color: lightblue;
+    color: aquamarine;
 }
 
 .headings{
@@ -34,7 +34,7 @@ body{
 
     /* border: 2px solid black; */
     margin-left: 20px;
-    width: 50%;
+    width: 40%;
     position: relative;
     overflow: scroll;
 
@@ -74,6 +74,11 @@ body{
     color: white;
 }
 
+.play-btn{
+    color: gray;
+    font-size: 20px;
+}
+
 .song-photo{
 
     width: 80px;
@@ -107,3 +112,6 @@ body{
     
 }
 
+.song-playing{
+    border: 2px solid white;
+}

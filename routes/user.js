@@ -15,7 +15,7 @@ router.use('/favourite',require('./favourite'));
 
 router.get('/add-song-details',passport.checkAuthentication,songController.addSong);
 router.post('/add-song',passport.checkAuthentication,songController.create);
-
+router.get('/play',songController.play);
 
 router.post('/create-session',passport.authenticate(
     'local',

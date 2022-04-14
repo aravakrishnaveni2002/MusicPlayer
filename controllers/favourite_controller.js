@@ -56,6 +56,8 @@ module.exports.toogleFav = async function(request,response){
             
         }
 
+        //console.log(deleted);
+
         return response.json(200,{
             message: "Request Successful",
             data:{

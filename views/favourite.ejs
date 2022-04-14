@@ -23,20 +23,24 @@
                         </div>
                     
                     </div>
-                    <audio src="<%= fav.song.link%>" controls></audio>
+                    <a href="/user/play/?song_id=<%=fav.song._id%>" class="play-btn" id="play-btn-<%=fav.song._id%>"><i class="fas fa-play"></i></a>
+                    <audio class="audio"></audio>
                 </div>
             <% } %>    
         <% } %>    
     </div>
 </div>
 
-
-
 <script src="/js/favourite.js"></script>
+<script src="/js/play.js"></script>
 
 <script>
     $(' .add-fav').each(function(){
         let self = this;
         let tooglefav = new ToogleFav(self);
     });
+    $(' .play-btn').each(function(){
+        let self = this;
+        let play = new Play(self);
+    })
 </script>

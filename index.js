@@ -59,6 +59,7 @@ app.use(passport.setAuthenticatedUser);
 
 app.use(flash());
 app.use(customMware.setFlash);
+app.use(customMware.getSongPlaying);
 
 app.use('/',require('./routes/index'));
 

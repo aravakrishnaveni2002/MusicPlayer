@@ -2,4 +2,5 @@
     background-color: black;
     height: auto;
     border-top: 1px solid black;
+    min-height: 100%;
 }

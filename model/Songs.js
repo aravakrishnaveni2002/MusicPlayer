@@ -30,7 +30,11 @@ const songsSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Favourite'
         }
-    ]
+    ],
+
+    isPlaying: {
+        type: Boolean
+    }
 
 
 },{timestamps: true});
