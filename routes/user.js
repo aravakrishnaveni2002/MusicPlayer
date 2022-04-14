@@ -3,12 +3,19 @@ const router = express.Router();
 const passport = require('passport');
 
 const userController = require('../controllers/user_controller');
+const songController = require('../controllers/song_controller');
 
 router.get('/profile',passport.checkAuthentication,userController.profile);
 router.get('/signup',passport.checkUserNotSignedIn,userController.signup);
 router.get('/signin',passport.checkUserNotSignedIn,userController.signin);
 router.get('/signout',userController.signout);
 router.post('/create',userController.create);
+
+router.use('/favourite',require('./favourite'));
+
+router.get('/add-song-details',passport.checkAuthentication,songController.addSong);
+router.post('/add-song',passport.checkAuthentication,songController.create);
+
 
 router.post('/create-session',passport.authenticate(
     'local',

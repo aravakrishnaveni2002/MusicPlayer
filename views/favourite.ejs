@@ -1,0 +1,42 @@
+<div id="whole-fav">
+    <div class="title"><%= title%></div>
+
+
+    <div class="songs-container">
+        <% for(fav of favourites) {%>
+            <% if (fav.user._id == locals.user.id) {%>
+                <div class="each-song" id="each-song-<%=fav.song._id%>">
+                    <div class="song-info">
+                        <img class="song-photo" src="<%= fav.song.photo%>" alt="">
+                    
+                        <div class="details">
+                            <div>
+                                <span class="song-name"><%=fav.song.name%></span>
+                                <br>
+                                <span class="song-artist"><%=fav.song.artist%></span>
+                            </div>
+                            <div class="controls">
+                                <a href="/user/favourite/toggle-fav/?song_id=<%=fav.song.id%>&loc=profile" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>
+                                <a href="" class="add-que"><i class="fas fa-plus"></i></a>   
+                                        
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <audio src="<%= fav.song.link%>" controls></audio>
+                </div>
+            <% } %>    
+        <% } %>    
+    </div>
+</div>
+
+
+
+<script src="/js/favourite.js"></script>
+
+<script>
+    $(' .add-fav').each(function(){
+        let self = this;
+        let tooglefav = new ToogleFav(self);
+    });
+</script>

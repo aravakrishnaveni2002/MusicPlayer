@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/css/form.css">
+
+<div class="title"><%= title%></div>
+
+<div class="form"> 
+    <form action="/user/add-song" method="POST">
+        <div id="form-contents">
+            <div>
+                <span class="form-input-head">Song Link</span>
+                <input class="form-input-val"  name="link" type="text" required>
+            </div>
+            <div>
+                <span class="form-input-head">Song Name</span>
+                <input class="form-input-val" name="name" type="text" required>
+            </div>
+            <div>
+                <span class="form-input-head">Song Photo Link</span>
+                <input class="form-input-val" name="photo" type="text" required>
+            </div>
+            <div>
+                <span class="form-input-head">Artist</span>
+                <input class="form-input-val" name="artist" type="text">
+            </div>
+            <div>
+                <span class="form-input-head">Album</span>
+                <input class="form-input-val" name="album" type="text">
+            </div>
+        </div>
+
+        <div id="form-submit">
+            <button class="submit-btn">Submit</button>
+        </div>
+       
+    </form>
+</div>

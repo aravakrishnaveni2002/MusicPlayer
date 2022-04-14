@@ -1,6 +1,23 @@
+#whole-profile{
+    display: flex;
+    flex-direction: row;
+}
+
 #info{
 
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 70%;
+    border-right: 2px solid black;
+}
+
+#user-controls{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid black; */
+}
+
+#user-controls div{
+    margin-bottom: 20px;
 }

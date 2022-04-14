@@ -7,6 +7,9 @@ const {urlencoded} = require('express');
 
 const expressLayouts = require('express-ejs-layouts');
 
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+
 app.use(expressLayouts);
 // extract style and scripts from sub pages into the layout
 app.set('layout extractStyles', true);
@@ -53,6 +56,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setFlash);
 
 app.use('/',require('./routes/index'));
 

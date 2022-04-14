@@ -1,8 +1,18 @@
 const User = require('../model/User');
+const Song = require('../model/Songs');
+const Favourite = require('../model/Favourite');
 
-module.exports.profile = function(request,response){
+module.exports.profile = async function(request,response){
+
+    let favourites = await Favourite.find({})
+   .populate('user','name')
+   .populate('song')
+    
+
     return response.render('profile',{
-        title: 'Profile'
+        title: 'Profile',
+        favourites: favourites
+        
     })
 }
 
@@ -26,6 +36,7 @@ module.exports.signout = function(request,response){
 module.exports.create = function(request,response){
 
     if(request.body.password != request.body.confirm_password){
+        request.flash('error','Password and Confrim Password does not match');
         return response.redirect('back');
     }
 
@@ -41,7 +52,7 @@ module.exports.create = function(request,response){
                     console.log("Error in creating the user");
                     return;
                 }
-
+                request.flash('success','User created successfully'); d
                 return response.redirect('/user/signin');
             });
         }
@@ -52,7 +63,7 @@ module.exports.create = function(request,response){
     });
 }
 
-module.exports.createSession = function(request,response){
-
+module.exports.createSession = async function(request,response){
+     request.flash('success','Logged in successfully');
     return response.redirect('/');
 }

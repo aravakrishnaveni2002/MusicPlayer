@@ -1,7 +1,63 @@
 <link rel="stylesheet" href="css/home.css">
 
 <div id="whole-home">
-    <h1>
+    <div class="title">
         Music Player | <%= title %>
-    </h1>
+    </div>
+
+    <div class="songs-container">
+
+        <% for (song of songs) { %>
+            <div class="each-song" id="each-song-<%=song._id%>">
+                <div class="song-info">
+                    <img class="song-photo" src="<%= song.photo%>" alt="">
+                    <div class="details">
+                        <div>
+                            <span class="song-name"><%=song.name%></span>
+                            <br>
+                            <span class="song-artist"><%=song.artist%></span>
+                        </div>
+                        <div class="controls">
+                            <%if(locals.user){%>
+                                <% for(fav of song.likedby) {%>
+                                    <% if (fav.user._id == locals.user.id) {%>
+                                        <a href="/user/favourite/toggle-fav/?song_id=<%=song.id%>&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>
+                                        
+                                    <% } else { %> 
+                                        <a href="/user/favourite/toggle-fav/?song_id=<%=song.id%>" class="add-fav" style="color: white"><i class="fas fa-heart"></i></a>
+                                       
+                                    <% } %>    
+                                    
+                                <% } %> 
+                                
+                                <% if(song.likedby.length == 0) { %>
+                                    <a href="/user/favourite/toggle-fav/?song_id=<%=song.id%>&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart"></i></a>
+                                <% } %>
+                                <a href="" class="add-que"><i class="fas fa-plus"></i></a>   
+                                    
+                            <%}%>
+                        </div>
+                    </div>
+                    
+                    
+                
+                </div>
+                <audio src="<%= song.link%>" controls></audio>
+            </div>
+        <% } %>    
+
+    </div>
+
+    
+    
 </div>
+
+
+<script src="/js/favourite.js"></script>
+
+<script>
+    $(' .add-fav').each(function(){
+        let self = this;
+        let tooglefav = new ToogleFav(self);
+    });
+</script>

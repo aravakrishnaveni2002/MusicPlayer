@@ -1,9 +1,16 @@
-#whole-body{
-
-    text-align: center;
+body{
     margin: 0;
+}
+
+#whole-body{
+    min-height: 100%;
+    max-height: auto;
+    /* background-color: black; */
+}
+
+#whole-fav{
+    background-color: black;
     height: 100%;
-    /* border: 2px solid black; */
 }
 
 .title{
@@ -15,10 +22,88 @@
     margin-bottom: 50px;
     color: lightblue;
 }
+
 .headings{
     font-size: 25px;
     font-family: sans-serif;
     text-decoration: none;
     color: gray;
+}
+
+.songs-container{
+
+    /* border: 2px solid black; */
+    margin-left: 20px;
+    width: 50%;
+    position: relative;
+    overflow: scroll;
+
+}
+
+.each-song{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    /* border: 1px solid grey; */
+    background-color: black;
+}
+
+.song-info{
+
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: center;
+ 
+}
+
+.add-fav{
+    margin-bottom: 5px;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* color: white; */
+}
+
+.add-que{
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: white;
+}
+
+.song-photo{
+
+    width: 80px;
+    height: 80px;
+}
+
+.song-name{
+    font-size: 15px;
+    color: aquamarine;
+}
+
+.song-artist{
+    font-size: 12px;
+    /* margin-top: -15px; */
+    color: white;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.controls{
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid black; */
+    
 }
 
