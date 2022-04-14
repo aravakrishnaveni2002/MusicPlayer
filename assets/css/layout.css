@@ -8,8 +8,9 @@ body{
     /* background-color: black; */
 }
 
-#whole-fav{
+.whole-fav{
     background-color: black;
+    height: auto;
     height: 100%;
 }
 
@@ -34,7 +35,7 @@ body{
 
     /* border: 2px solid black; */
     margin-left: 20px;
-    width: 40%;
+    width: 50%;
     position: relative;
     overflow: scroll;
 
@@ -55,7 +56,7 @@ body{
 
     display: flex;
     flex-direction: row;
-    width: 40%;
+    width: 60%;
     justify-content: center;
  
 }
@@ -79,10 +80,11 @@ body{
     font-size: 20px;
 }
 
-.song-photo{
+.each-photo{
 
     width: 80px;
     height: 80px;
+    /* text-decoration: none; */
 }
 
 .song-name{
@@ -90,11 +92,12 @@ body{
     color: aquamarine;
 }
 
-.song-artist{
+.song-artist-album{
     font-size: 12px;
     /* margin-top: -15px; */
     color: white;
 }
+
 
 .details{
     display: flex;
@@ -105,6 +108,8 @@ body{
     margin-left: 10px;
 }
 
+
+
 .controls{
     display: flex;
     flex-direction: row;
@@ -114,4 +119,79 @@ body{
 
 .song-playing{
     border: 2px solid white;
+}
+
+.albums-container{
+
+    /* border: 2px solid black; */
+    margin-left: 20px;
+    width: 90%;
+    position: relative;
+    overflow: scroll;
+
+}
+
+.each-album{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    /* border: 1px solid grey; */
+    align-items: center;
+    /* width: 100%; */
+    background-color: black;
+}
+
+.album-info{
+
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    /* border: 2px solid red; */
+    width: 80%;
+}
+
+.album-details{
+
+    /* border: 2px solid green; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.album-name{
+    font-size: 20px;
+    text-decoration: none;
+    /* font-family: sans-serif; */
+    color: white;
+}
+
+.album-details{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.album-photo{
+
+    width: 200px;
+    height: 200px;
+}
+
+.album-name-heading{
+
+    color: white;
+    font-size: 25px;
+    font-family: serif;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+.whole-album{
+    background-color: black;
+    height: auto;
+    min-height: 100%;
 }

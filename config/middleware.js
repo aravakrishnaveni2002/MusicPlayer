@@ -1,4 +1,5 @@
 const Song = require('../model/Songs');
+const User = require('../model/User'); 
 
 module.exports.setFlash = function(request,response,next){
 
@@ -13,18 +14,21 @@ module.exports.setFlash = function(request,response,next){
 module.exports.getSongPlaying = async function(request,response,next){
 
 
-    let songs = await Song.find({})
-    .populate('likedby');
-
     response.locals.songPlaying = 'null';
 
-    for(let song of songs){
-        if(song.isPlaying == true){
-            // console.log("*");
-            response.locals.songPlaying = song;
+    if(request.user != undefined){
+        let user = await User.findById(request.user._id)
+        .populate({
+            path: 'songPlaying',
+            populate: 'likedby album'
+        })
+
+        if(user.songPlaying != undefined){
+            response.locals.songPlaying = user.songPlaying;
+
         }
     }
-    // console.log("_____");
 
     next();
+
 }

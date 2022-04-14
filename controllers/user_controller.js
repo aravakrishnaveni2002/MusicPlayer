@@ -52,7 +52,7 @@ module.exports.create = function(request,response){
                     console.log("Error in creating the user");
                     return;
                 }
-                request.flash('success','User created successfully'); d
+                request.flash('success','User created successfully');
                 return response.redirect('/user/signin');
             });
         }

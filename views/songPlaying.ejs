@@ -1,12 +1,12 @@
 <% if(songPlaying != 'null') {%>
     <div class="each-song song-playing" id="each-song-<%=songPlaying._id%>">
         <div class="song-info">
-            <img class="song-photo" src="<%=songPlaying.photo%>" alt="">
+            <a href="/user/album-all-songs/?album_id=<%=songPlaying.album._id%>"><img class="each-photo" src="<%=songPlaying.photo%>" alt=""></a>
             <div class="details">
                 <div>
                     <span class="song-name"><%=songPlaying.name%></span>
                     <br>
-                    <span class="song-artist"><%=songPlaying.artist%></span>
+                    <span class="song-artist-album"><%=songPlaying.album.name%> - </span><span class="song-artist-album"><%=songPlaying.artist%></span>
                 </div>
                 <div class="controls">
                     <% if(locals.user) {%> 

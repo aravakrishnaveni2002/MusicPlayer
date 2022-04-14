@@ -17,6 +17,11 @@ class Play{
             })
             .done(function(data){
                 
+                if(data.data.songPlayingPrev != null){ 
+                    $(`#play-btn-${data.data.songPlayingPrev}`).html(`<i class="fas fa-play" style="color: grey"></i>`);
+                    
+                }
+
                 if(data.data.play == true){
                     $(self).html(`<i class="fas fa-play" style="color: aquamarine"></i>`);
                     $(`.audio`)[0].src = data.data.song.link;
@@ -33,10 +38,7 @@ class Play{
                     $(`audio`)[0].pause();
                 }
 
-                if(data.data.songPlayingPrev != null){ 
-                    $(`#play-btn-${data.data.songPlayingPrev}`).html(`<i class="fas fa-play" style="color: grey"></i>`);
-                    
-                }
+                
 
                 
             })
@@ -68,12 +70,12 @@ class Play{
         }    
         return $(`<div class="each-song song-playing" id="each-song-${song._id}">
         <div class="song-info">
-            <img class="song-photo" src="${song.photo}" alt="">
+            <a href="/user/album-all-songs/?album_id=${song.album._id}"><img class="each-photo" src="${song.photo}" alt=""></a>
             <div class="details">
                 <div>
                     <span class="song-name">${song.name}</span>
                     <br>
-                    <span class="song-artist">${song.artist}</span>
+                    <span class="song-artist-album">${song.album.name} - </span><span class="song-artist-album">${song.artist}</span>
                 </div>
                 <div class="controls">
                       ${togfav}

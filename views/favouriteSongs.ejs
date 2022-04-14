@@ -1,4 +1,4 @@
-<div id="whole-fav">
+<div class="whole-fav">
     <div class="title"><%= title%></div>
 
 
@@ -7,13 +7,13 @@
             <% if (fav.user._id == locals.user.id) {%>
                 <div class="each-song" id="each-song-<%=fav.song._id%>">
                     <div class="song-info">
-                        <img class="song-photo" src="<%= fav.song.photo%>" alt="">
+                        <a href="/user/album-all-songs/?album_id=<%=fav.song.album._id%>"><img class="each-photo" src="<%= fav.song.photo%>" alt=""></a>
                     
                         <div class="details">
                             <div>
                                 <span class="song-name"><%=fav.song.name%></span>
                                 <br>
-                                <span class="song-artist"><%=fav.song.artist%></span>
+                                <span class="song-artist-album"><%=fav.song.album.name%> - </span><span class="song-artist-album"><%=fav.song.artist%></span>
                             </div>
                             <div class="controls">
                                 <a href="/user/favourite/toggle-fav/?song_id=<%=fav.song.id%>&loc=profile" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>

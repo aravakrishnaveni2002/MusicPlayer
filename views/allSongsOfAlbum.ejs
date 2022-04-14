@@ -1,28 +1,31 @@
-<link rel="stylesheet" href="css/home.css">
+<div class="whole-album">
+    <div class="title"><%= title%></div>
 
-<div id="whole-home">
-    <div class="title">
-        Music Player | <%= title %>
+    <div class="album-details">
+        <a href="/user/album-all-songs/?album_id=<%=album._id%>"><img src="<%=album.photo%>" alt="" class="album-photo"></a>
+    </div>
+
+    <div class="album-name-heading">
+        <%=album.name%>
     </div>
 
     <div class="songs-container">
 
-        <% for (song of songs) { %>
+        <% for (song of album.songs) { %>
             <div class="each-song" id="each-song-<%=song._id%>">
                 <div class="song-info">
-                   <a href="/user/album-all-songs/?album_id=<%=song.album._id%>"><img class="each-photo" src="<%= song.photo%>" alt=""></a>
                     <div class="details">
                         <div>
                             <span class="song-name"><%=song.name%></span>
                             <br>
-                            <span class="song-artist-album"><%=song.album.name%> - </span><span class="song-artist-album"><%=song.artist%></span>
+                            </span><span class="song-artist-album"><%=song.artist%></span>
                             
                             
                         </div>
                         <div class="controls">
                             <%if(locals.user){%>
                                 <% for(fav of song.likedby) {%>
-                                    <% if (fav.user._id == locals.user.id) {%>
+                                    <% if (fav.user == locals.user.id) {%>
                                         <a href="/user/favourite/toggle-fav/?song_id=<%=song.id%>&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>
                                         
                                     <% } else { %> 
@@ -49,21 +52,19 @@
             </div>
         <% } %>    
 
-    </div>   
+    </div><script src="/js/favourite.js"></script>
+    <script src="/js/play.js"></script>
     
+    <script>
+        $(' .add-fav').each(function(){
+            let self = this;
+            let tooglefav = new ToogleFav(self);
+        });
+    
+        $(' .play-btn').each(function(){
+            let self = this;
+            let play = new Play(self);
+        })
+    </script>
+
 </div>
-
-
-<script src="/js/favourite.js"></script>
-<script src="/js/play.js"></script>
-
-<script>
-    $(' .add-fav').each(function(){
-        let self = this;
-        let tooglefav = new ToogleFav(self);
-    });
-    $(' .play-btn').each(function(){
-        let self = this;
-        let play = new Play(self);
-    })
-</script>

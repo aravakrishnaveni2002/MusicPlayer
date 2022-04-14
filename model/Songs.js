@@ -22,7 +22,8 @@ const songsSchema = new mongoose.Schema({
     },
 
     album:{
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Album'
     },
 
     likedby: [
@@ -30,11 +31,7 @@ const songsSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Favourite'
         }
-    ],
-
-    isPlaying: {
-        type: Boolean
-    }
+    ]
 
 
 },{timestamps: true});

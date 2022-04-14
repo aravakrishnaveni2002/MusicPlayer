@@ -17,6 +17,8 @@ router.get('/add-song-details',passport.checkAuthentication,songController.addSo
 router.post('/add-song',passport.checkAuthentication,songController.create);
 router.get('/play',songController.play);
 
+router.get('/album-all-songs',songController.allSongsOfAlbum);
+
 router.post('/create-session',passport.authenticate(
     'local',
     {failureRedirect: '/user/signin'}

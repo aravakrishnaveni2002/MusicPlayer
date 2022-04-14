@@ -14,6 +14,8 @@ module.exports.home = async function(request,response){
                 select: 'name' 
             }
         })
+        .populate('album')
+        .sort({'name': 1})
 
         
 

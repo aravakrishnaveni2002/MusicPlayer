@@ -1,4 +1,6 @@
 const Song = require('../model/Songs');
+const Album = require('../model/Album');
+const User = require('../model/User');
 
 var songPlayingNow = null;
 var songPlayingPrev = null;
@@ -19,10 +21,34 @@ module.exports.create = async function(request,response){
         if(!song){
             // console.log(request.body);
             
-            await Song.create(request.body);
+            song = await Song.create({
+                link: request.body.link,
+                name: request.body.name,
+                photo: request.body.photo,
+                artist: request.body.artist,
+            });
+
+            //console.log(song);
+
+            if(request.body.album != ''){
+                let album = await Album.findOne({name: request.body.album});
+                if(!album){
+                    album = await Album.create({
+                        photo: request.body.photo,
+                        name: request.body.album,
+                    });
+                }
+                album.songs.push(song._id);
+                album.save();
+
+                song.album = album._id;
+                song.save();
+            }
 
             return response.redirect('/');
         }
+
+        
 
         else{
             return response.redirect('back');
@@ -39,19 +65,14 @@ module.exports.play = async function(request,response){
     try{
 
         let song = await Song.findById(request.query.song_id)
-        .populate('likedby');
+        .populate('likedby')
+        .populate('album')
+        
 
         let play;
 
         if(songPlayingNow == null){
             play = true;
-            if(songPlayingPrev != null){
-                let prevSong = await Song.findById(songPlayingPrev);
-                prevSong.isPlaying = false;
-                prevSong.save();
-            }
-            song.isPlaying = true;
-            song.save();
             songPlayingNow = request.query.song_id;
         }
 
@@ -59,56 +80,21 @@ module.exports.play = async function(request,response){
             play = true;
             songPlayingPrev = songPlayingNow;
             songPlayingNow = request.query.song_id;
-            song.isPlaying = true;
-            song.save();
-            let prevSong = await Song.findById(songPlayingPrev);
-            prevSong.isPlaying = false;
-            prevSong.save();
         }
 
         else{
             play = false;
-            //songPlayingPrev = null;
-            songPlayingPrev = request.query.song_id;
+            songPlayingPrev = null;
             songPlayingNow = null;
         }
-        
-        // if(songPlayingNow == null){
-        //     //console.log("Play");
-        //     play = true;
-        //     if(songPlayingPrev != null){
-        //         let prevSong = await Song.findById(songPlayingPrev);
-        //         prevSong.isPlaying = false;
-        //         prevSong.save();
-        //     }
-        //     songPlayingNow = request.query.song_id;
-        //     song.isPlaying = true;
-        //     song.save(); 
+
+        if(play == true && request.user != undefined){
+            let user = await User.findById(request.user._id);
+
+            user.songPlaying = request.query.song_id;
+            user.save();
             
-        // }
-
-        // else if(songPlayingNow != request.query.song_id){
-        //     //console.log("play");
-        //     play = true;
-            
-        //     songPlayingPrev = songPlayingNow;
-        //     songPlayingNow = request.query.song_id;
-        //     let prevSong = await Song.findById(songPlayingPrev);
-        //     prevSong.isPlaying = false;
-        //     prevSong.save();
-        //     song.isPlaying = true;
-        //     song.save();
-        // }
-
-        // else{
-        //     //console.log("Pause");
-        //     play = false;
-        //     songPlayingNow = null;
-        //     songPlayingPrev = request.query.song_id;
-        // }
-
-    // return response.redirect('back');
-
+        }
         
         var user;
         if(request.user == undefined){
@@ -135,4 +121,18 @@ module.exports.play = async function(request,response){
         });
     }
 
+}
+
+module.exports.allSongsOfAlbum = async function(request,response){
+
+    let album = await Album.findById(request.query.album_id)
+    .populate({
+        path: 'songs',
+        populate: 'likedby'
+    })
+
+    return response.render('allSongsOfAlbum',{
+        title: 'All Songs',
+        album: album
+    });
 }
