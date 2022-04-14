@@ -3,3 +3,61 @@
     border-bottom: 1px solid black;
     background-color: lavender;
 }
+
+#logo{
+
+    width: 60px;
+    height: 60px;
+    border-radius: 1.5rem;
+    
+}
+
+#header-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#header-content div{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#profile{
+
+    width: 60px;
+    height: 60px;
+    border-radius: 1.5rem;
+
+}
+
+#contents{
+    display: flex;
+    flex-direction: column;
+    display: none;
+    
+}
+
+#contents div{
+    height: 40px;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: white;
+    
+}
+
+#contents div:hover{
+    color: aliceblue;
+} 
+
+#contents:hover{
+    display: block;
+}
+
+#profile:hover + #contents{
+
+    display: block;  
+     
+}

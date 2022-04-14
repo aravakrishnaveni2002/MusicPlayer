@@ -1,17 +1,58 @@
 const express = require('express');
 const port = 8000;
+const db = require('./config/mongoose');
 const app = express();
+const cookieParser = require('cookie-parser');
+const {urlencoded} = require('express');
 
 const expressLayouts = require('express-ejs-layouts');
 
 app.use(expressLayouts);
-app.set('layout extractStyles',true);
-app.set('layout extractScripts',true);
+// extract style and scripts from sub pages into the layout
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
 
-app.use(express.static('assets'));
+
+
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo')(session);
+
+app.use(urlencoded());
+app.use(cookieParser());
+
+
+app.use(express.static('./assets'));
 
 app.set('view engine','ejs');
 app.set('views','./views');
+
+//mongo store is used to store the session cookie int he db
+app.use(session({
+    name: 'music',
+    secret: 'any random',
+    saveUninitialized:false,
+    resave: false,
+    cookie:{
+        maxAge: (100*60*1000)
+    },
+
+    store: new MongoStore(
+        {
+            mongooseConnection: db,
+            autoRemove: 'disbaled'
+        },
+
+        function(err){
+            console.log(err || 'connect-mongodb set up ok');
+        }
+    )
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 
 app.use('/',require('./routes/index'));
 

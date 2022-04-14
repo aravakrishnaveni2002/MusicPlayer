@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/css/sign.css">
+
+<div class="title"><%= title%></div>
+
+<div class="form"> 
+    <form action="/user/create-session" method="POST">
+        <div id="form-contents">
+            <div>
+                <span class="form-input-head">Email</span>
+                <input class="form-input-val" name = "email" type="email">
+            </div>
+            <div>
+                <span class="form-input-head">Password</span>
+                <input class="form-input-val" name="password" type="password">
+            </div>
+            
+        </div>
+
+        <div id="form-submit">
+            <button class="submit-btn">Submit</button>
+        </div>
+       
+    </form>
+</div>
+
