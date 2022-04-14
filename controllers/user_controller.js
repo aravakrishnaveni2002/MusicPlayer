@@ -4,16 +4,13 @@ const Favourite = require('../model/Favourite');
 
 module.exports.profile = async function(request,response){
 
-    let favourites = await Favourite.find({})
-   .populate('user','name')
-   .populate('song')
-    
-
     return response.render('profile',{
         title: 'Profile',
-        favourites: favourites
+        user_name: request.user.name,
+        user_email: request.user.email
+        // favourites: favourites
         
-    })
+    });
 }
 
 module.exports.signup = function(request,response){

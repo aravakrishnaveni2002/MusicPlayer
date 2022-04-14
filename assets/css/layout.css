@@ -20,8 +20,9 @@ body{
     flex-direction: column;
     align-items: center;
     font-size: 40px;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
     color: aquamarine;
+    background-color: black;
 }
 
 .headings{
@@ -29,6 +30,12 @@ body{
     font-family: sans-serif;
     text-decoration: none;
     color: gray;
+}
+
+.signin-signup{
+    height: 100%;
+    background-color: black;
+    
 }
 
 .songs-container{
@@ -121,7 +128,7 @@ body{
     border: 2px solid white;
 }
 
-.albums-container{
+.albums-artists-container{
 
     /* border: 2px solid black; */
     margin-left: 20px;
@@ -131,7 +138,7 @@ body{
 
 }
 
-.each-album{
+.each-album-artist{
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
@@ -141,7 +148,7 @@ body{
     background-color: black;
 }
 
-.album-info{
+.album-artist-info{
 
     display: flex;
     flex-direction: row;
@@ -150,23 +157,24 @@ body{
     width: 80%;
 }
 
-.album-details{
+.album-artist-details-name{
 
     /* border: 2px solid green; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-left: 20px;
+    /* align-items: center; */
 }
 
-.album-name{
+.album-artist-name{
     font-size: 20px;
     text-decoration: none;
     /* font-family: sans-serif; */
     color: white;
 }
 
-.album-details{
+.album-artist-details-photo{
 
     display: flex;
     flex-direction: column;
@@ -180,18 +188,48 @@ body{
     height: 200px;
 }
 
-.album-name-heading{
-
-    color: white;
+.album-artist-name-heading{
+    
     font-size: 25px;
     font-family: serif;
     margin-bottom: 20px;
     margin-top: 20px;
+    margin-left: 20px;
+    text-decoration: none;
 
 }
 
-.whole-album{
+.album-artist-name-heading a{
+    text-decoration: none;
+    color: white;
+}
+
+.whole-album-artist{
     background-color: black;
     height: auto;
     min-height: 100%;
+}
+
+.trending-songs{
+    margin-left: 60px;
+    
+}
+
+.sub-heading{
+    color: lavender;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.artist-photo-small{
+    width: 80px;
+    height: 80px;
+    border-radius: 3rem;
+}
+
+.artist-photo-big{
+
+    width: 200px;
+    height: 200px;
+    border-radius: 6rem;
 }

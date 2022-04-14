@@ -4,22 +4,22 @@
 
 <div id="whole-profile">
     <div id="info">
-        <h3>User Name: <%= user.name%> </h3>
-        <h3>User Email: <%= user.email%> </h3>
+        <h3>User Name: <%= user_name%> </h3>
+        <h3>User Email: <%= user_email%> </h3>
         <a href="/user/add-song-details"><button>Add Song</button></a>
     </div>
     
     <div id="user-controls">
        <div><a href="/user/favourite/songs" class="each-ele headings">Songs</a></div>
        <div><a href="/user/favourite/albums" class="each-ele headings">Albums</a></div>
-       <div><a href="" class="each-ele headings">Artists</a></div>
+       <div><a href="/user/favourite/artists" class="each-ele headings">Artists</a></div>
     </div>
     
 </div>
 
-
 <script src="/js/favourite.js"></script>
 <script src="/js/play.js"></script>
+
 
 <script>
     $(' .add-fav').each(function(){

@@ -2,32 +2,34 @@
 
 <div class="title"><%= title%></div>
 
-<div class="form"> 
-    <form action="/user/create" method="POST">
-        <div id="form-contents">
-            <div>
-                <span class="form-input-head">Name</span>
-                <input class="form-input-val"  name="name" type="text">
+<div class="signin-signup">
+    <div class="form"> 
+        <form action="/user/create" method="POST">
+            <div id="form-contents">
+                <div>
+                    <span class="form-input-head">Name</span>
+                    <input class="form-input-val"  name="name" type="text" required>
+                </div>
+                <div>
+                    <span class="form-input-head">Email</span>
+                    <input class="form-input-val" name="email" type="email" required>
+                </div>
+                <div>
+                    <span class="form-input-head">Password</span>
+                    <input class="form-input-val" name="password" type="password" required>
+                </div>
+                <div>
+                    <span class="form-input-head">Confrim Password</span>
+                    <input class="form-input-val" name="confirm_password" type="password" required>
+                </div>
             </div>
-            <div>
-                <span class="form-input-head">Email</span>
-                <input class="form-input-val" name="email" type="email">
+    
+            <div id="form-submit">
+                <button class="submit-btn">Submit</button>
             </div>
-            <div>
-                <span class="form-input-head">Password</span>
-                <input class="form-input-val" name="password" type="password">
-            </div>
-            <div>
-                <span class="form-input-head">Confrim Password</span>
-                <input class="form-input-val" name="confirm_password" type="password">
-            </div>
-        </div>
-
-        <div id="form-submit">
-            <button class="submit-btn">Submit</button>
-        </div>
-       
-    </form>
+           
+        </form>
+    </div>
 </div>
 
 <script src="/js/favourite.js"></script>

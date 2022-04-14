@@ -2,7 +2,7 @@ const User = require('../model/User');
 const Song = require('../model/Songs');
 const Favourite = require('../model/Favourite');
 const Album = require('../model/Album');
-
+const Artist = require('../model/Artist');
 
 module.exports.favSongs = async function(request,response){
 
@@ -13,9 +13,9 @@ module.exports.favSongs = async function(request,response){
         .populate('user','name')
         .populate({
             path: 'song',
-            populate: 'album'
-        })
-        
+            populate: 'album artists'
+            
+        })    
     
         return response.render('favouriteSongs',{
             title: "Favourite Songs",
@@ -35,7 +35,7 @@ module.exports.favAlbums = async function(request,response){
         .populate({
             path: 'song',
             populate: {
-                path: 'album'
+                path: 'album artists',
             }
         })
 
@@ -49,6 +49,29 @@ module.exports.favAlbums = async function(request,response){
     }
 }
 
+module.exports.favArtists = async function(request,response){
+
+    try{
+        let favourites = await Favourite.find({})
+        .populate('user','name')
+        .populate({
+            path: 'song',
+            populate: {
+                path: 'album artists',
+            }
+        })
+
+        return response.render('favouriteArtists',{
+            title: "Favourite Artists",
+            favourites: favourites
+        })
+
+    }catch(err){
+        console.log("Error ",err);
+        return;
+    }
+}
+
 module.exports.favAlbumSongs = async function(request,response){
 
     try{
@@ -56,7 +79,7 @@ module.exports.favAlbumSongs = async function(request,response){
         .populate({
             path: 'songs',
             populate: {
-                path: 'likedby'
+                path: 'likedby artists'
             }
         })
 
@@ -69,6 +92,27 @@ module.exports.favAlbumSongs = async function(request,response){
         return;
     }
 
+}
+
+module.exports.favArtistSongs = async function(request,response){
+
+    try{
+
+        let artist = await Artist.findById(request.query.artist_id)
+        .populate({
+            path: 'songs',
+            populate: 'likedby album'
+        })
+
+        return response.render('favouriteArtistSongs',{
+            title: "Favourite Artist Songs",
+            artist: artist
+        })
+
+    }catch(err){
+        console.log("Error ",err);
+        return;
+    }
 }
 
 module.exports.toogleFav = async function(request,response){

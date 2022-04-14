@@ -2,25 +2,27 @@
 
 <div class="title"><%= title%></div>
 
-<div class="form"> 
-    <form action="/user/create-session" method="POST">
-        <div id="form-contents">
-            <div>
-                <span class="form-input-head">Email</span>
-                <input class="form-input-val" name = "email" type="email">
+<div class="signin-signup">
+    <div class="form"> 
+        <form action="/user/create-session" method="POST">
+            <div id="form-contents">
+                <div>
+                    <span class="form-input-head">Email</span>
+                    <input class="form-input-val" name = "email" type="email" required>
+                </div>
+                <div>
+                    <span class="form-input-head">Password</span>
+                    <input class="form-input-val" name="password" type="password" required>
+                </div>
+                
             </div>
-            <div>
-                <span class="form-input-head">Password</span>
-                <input class="form-input-val" name="password" type="password">
+    
+            <div id="form-submit">
+                <button class="submit-btn">Submit</button>
             </div>
             
-        </div>
-
-        <div id="form-submit">
-            <button class="submit-btn">Submit</button>
-        </div>
-       
-    </form>
+        </form>
+    </div>
 </div>
 
 <script src="/js/favourite.js"></script>

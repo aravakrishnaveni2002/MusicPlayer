@@ -20,7 +20,7 @@ module.exports.getSongPlaying = async function(request,response,next){
         let user = await User.findById(request.user._id)
         .populate({
             path: 'songPlaying',
-            populate: 'likedby album'
+            populate: 'likedby album artists'
         })
 
         if(user.songPlaying != undefined){
@@ -30,5 +30,4 @@ module.exports.getSongPlaying = async function(request,response,next){
     }
 
     next();
-
 }

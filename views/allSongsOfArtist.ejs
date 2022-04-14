@@ -2,35 +2,24 @@
     <div class="title"><%= title%></div>
 
     <div class="album-artist-details-photo">
-        <a href="/user/album-all-songs/?album_id=<%=album._id%>"><img src="<%=album.photo%>" alt="" class="album-photo"></a>
+        <a href="/user/artist-all-songs/?artist_id=<%=artist._id%>"><img src="<%=artist.photo%>" alt="" class="artist-photo-big"></a>
     </div>
 
     <div class="album-artist-name-heading">
-        <a href="/user/album-all-songs/?album_id=<%=album._id%>"><%=album.name%></a>
+        <a href="/user/artist-all-songs/?artist_id=<%=artist._id%>"><%=artist.name%></a>
     </div>
 
     <div class="songs-container">
 
-        <% for (song of album.songs) { %>
+        <% for (song of artist.songs) { %>
             <div class="each-song" id="each-song-<%=song._id%>">
                 <div class="song-info">
                     <div class="details">
                         <div>
                             <span class="song-name"><%=song.name%></span>
                             <br>
-                            
-                            <% for(let i=0;i<song.artists.length;i++) {%>
+                            <span class="song-artist-album"><%=song.album.name%></span>
                                 
-                                <% if(i == song.artists.length-1) {%>
-                                    <span class="song-artist-album"><%= song.artists[i].name %></span>
-                                <%} else { %>
-                                    <span class="song-artist-album"><%= song.artists[i].name %>,</span>
-                                <% } %>
-                                
-                            
-                            <% } %>
-                            
-                            
                         </div>
                         <div class="controls">
                             <%if(locals.user){%>

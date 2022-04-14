@@ -3,6 +3,7 @@ const User = require('../model/User');
 const Favourite = require('../model/Favourite');
 
 
+
 module.exports.home = async function(request,response){
 
     try{
@@ -14,7 +15,7 @@ module.exports.home = async function(request,response){
                 select: 'name' 
             }
         })
-        .populate('album')
+        .populate('album artists')
         .sort({'name': 1})
 
         
@@ -29,3 +30,4 @@ module.exports.home = async function(request,response){
         return;
     }
 }
+

@@ -13,7 +13,17 @@
                             <div>
                                 <span class="song-name"><%=fav.song.name%></span>
                                 <br>
-                                <span class="song-artist-album"><%=fav.song.album.name%> - </span><span class="song-artist-album"><%=fav.song.artist%></span>
+                                <span class="song-artist-album"><%=fav.song.album.name%> - </span>
+                                <% for(let i=0;i<fav.song.artists.length;i++) {%>
+                                    
+                                    <% if(i == fav.song.artists.length-1) {%>
+                                        <span class="song-artist-album"><%= fav.song.artists[i].name %></span>
+                                    <%} else { %>
+                                        <span class="song-artist-album"><%= fav.song.artists[i].name %>,</span>
+                                    <% } %>
+                                    
+                                
+                                <% } %>
                             </div>
                             <div class="controls">
                                 <a href="/user/favourite/toggle-fav/?song_id=<%=fav.song.id%>&loc=profile" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>

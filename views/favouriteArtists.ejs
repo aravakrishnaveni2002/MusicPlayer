@@ -1,0 +1,45 @@
+<div class="whole-fav">
+    <div class="title"><%= title%></div>
+
+    <div class="albums-artists-container">
+
+        <% var obj = new Object() %>
+
+        <% for(fav of favourites) {%>
+            <% if(fav.user._id == locals.user.id) {%>
+                <% for( artist of fav.song.artists) {%>
+                    <% if(obj[artist.name] == undefined) {%>
+                        <% obj[artist.name] = 1 %>
+                        <div class="each-album-artist" id="each-album-<%=artist._id%>">
+                            <div class="album-artist-info">
+                                <a href="/user/favourite/artist-songs/?artist_id=<%=artist._id%>"><img class="artist-photo-small" src="<%= artist.photo%>" alt=""></a>
+        
+                                <div class="album-artist-details-name">
+                                    
+                                    <a href="/user/favourite/artist-songs/?artist_id=<%=artist._id%>" class="album-artist-name"><span ><%= artist.name%></span></a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    <%} %>
+                <%}%>
+                
+            <%}%>
+        <%}%>
+
+    </div>
+</div>
+
+<script src="/js/favourite.js"></script>
+<script src="/js/play.js"></script>
+
+<script>
+    $(' .add-fav').each(function(){
+        let self = this;
+        let tooglefav = new ToogleFav(self);
+    });
+    $(' .play-btn').each(function(){
+        let self = this;
+        let play = new Play(self);
+    })
+</script>

@@ -1,6 +1,8 @@
 const Song = require('../model/Songs');
 const Album = require('../model/Album');
+const Artist = require('../model/Artist');
 const User = require('../model/User');
+
 
 var songPlayingNow = null;
 var songPlayingPrev = null;
@@ -24,8 +26,7 @@ module.exports.create = async function(request,response){
             song = await Song.create({
                 link: request.body.link,
                 name: request.body.name,
-                photo: request.body.photo,
-                artist: request.body.artist,
+                photo: request.body.photo
             });
 
             //console.log(song);
@@ -42,8 +43,31 @@ module.exports.create = async function(request,response){
                 album.save();
 
                 song.album = album._id;
-                song.save();
+                
             }
+
+            if(request.body.artist != ''){
+
+                let artists = request.body.artist.split(",");
+
+                for(let i=0;i<artists.length;i++){
+                    let artist = await Artist.findOne({name: artists[i]});
+                    if(!artist){
+                        artist = await Artist.create({
+                            name: artists[i]
+                        });
+                    }
+                    artist.songs.push(song._id);
+                    artist.save();
+
+                    song.artists.push(artist._id);
+                    
+                }
+                
+                
+            }
+
+            song.save();
 
             return response.redirect('/');
         }
@@ -66,7 +90,7 @@ module.exports.play = async function(request,response){
 
         let song = await Song.findById(request.query.song_id)
         .populate('likedby')
-        .populate('album')
+        .populate('album artists')
         
 
         let play;
@@ -125,14 +149,41 @@ module.exports.play = async function(request,response){
 
 module.exports.allSongsOfAlbum = async function(request,response){
 
-    let album = await Album.findById(request.query.album_id)
-    .populate({
-        path: 'songs',
-        populate: 'likedby'
-    })
+    try{
+        let album = await Album.findById(request.query.album_id)
+        .populate({
+            path: 'songs',
+            populate: 'likedby artists'
+        })
 
-    return response.render('allSongsOfAlbum',{
-        title: 'All Songs',
-        album: album
-    });
+        return response.render('allSongsOfAlbum',{
+            title: 'All Songs',
+            album: album
+        });
+    }catch(err){
+        console.log("Error ",err);
+        return;
+    }
+}
+
+module.exports.allSongsOfArtist = async function(request,response){
+
+    try{
+        let artist = await Artist.findById(request.query.artist_id)
+        .populate({
+            path: 'songs',
+            populate: 'likedby album'
+        })
+
+        return response.render('allSongsOfArtist',{
+            title: "All Songs",
+            artist: artist
+        });
+
+    }catch(err){
+        console.log("Error ",err);
+        return;
+    }
+
+
 }
