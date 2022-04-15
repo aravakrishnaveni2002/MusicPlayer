@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     min-height: 100%;
+    max-height: auto;
     background-color: black;
 }
 
@@ -9,9 +10,7 @@
 
     display: flex;
     flex-direction: column;
-    width: 70%;
-    height: 100%;
-    border-right: 2px solid white;
+    width: 65%;
 }
 
 h3{
@@ -19,13 +18,15 @@ h3{
 }
 
 #user-controls{
-    margin-left: 20px;
+   
     display: flex;
     flex-direction: column;
-    
-    /* border: 2px solid black; */
+    height: 100%;
+    border-left: 2px solid white;
 }
-
+    
 #user-controls div{
     margin-bottom: 20px;
+    margin-left: 20px;
+    
 }

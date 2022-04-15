@@ -17,7 +17,7 @@ class Play{
             })
             .done(function(data){
 
-                
+                console.log(data.data);
                 
                 if(data.data.songPlayingPrev != null){ 
                     $(`#play-btn-${data.data.songPlayingPrev}`).html(`<i class="fas fa-play" style="color: grey"></i>`);

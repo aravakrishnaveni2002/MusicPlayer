@@ -116,6 +116,8 @@ module.exports.play = async function(request,response){
             let user = await User.findById(request.user._id);
 
             user.songPlaying = request.query.song_id;
+            user.recentlyPlayed.pull(request.query.song_id);
+            user.recentlyPlayed.push(request.query.song_id);
             user.save();
             
         }

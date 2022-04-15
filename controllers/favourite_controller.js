@@ -173,3 +173,24 @@ module.exports.toogleFav = async function(request,response){
         });
     }
 }
+
+module.exports.recentlyPlayed = async function(request,response){
+
+    try{
+
+        let user = await User.findById(request.user._id)
+        .populate({
+            path: 'recentlyPlayed',
+            populate: 'album artists likedby'
+        })
+
+        return response.render('recentlyPlayedSongs',{
+            title: 'Recently Played',
+            songs: user.recentlyPlayed 
+        })
+
+    }catch(err){
+        console.log("Error ",err);
+        return;
+    }
+}

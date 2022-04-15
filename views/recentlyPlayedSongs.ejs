@@ -1,0 +1,76 @@
+
+<div class="whole-fav">
+    <div class="title"><%= title%></div>
+
+    <div class="songs-container">
+
+        <% for (let i=songs.length-1;i>=0;i--) { %>
+            <div class="each-song" id="each-song-<%=songs[i]._id%>">
+                <div class="song-info">
+                    <a href="/user/album-all-songs/?album_id=<%=songs[i].album._id%>"><img class="each-photo" src="<%= songs[i].photo%>" alt=""></a>
+                    <div class="details">
+                        <div>
+                            <span class="song-name"><%=songs[i].name%></span>
+                            <br>
+                            <span class="song-artist-album"><%=songs[i].album.name%> - </span>
+                            <% for(let i=0;i<songs[i].artists.length;i++) {%>
+                                
+                                <% if(i == songs[i].artists.length-1) {%>
+                                    <span class="song-artist-album"><%= songs[i].artists[i].name %></span>
+                                <%} else { %>
+                                    <span class="song-artist-album"><%= songs[i].artists[i].name %>,</span>
+                                <% } %>
+                                
+                            
+                            <% } %>   
+                            
+                            
+                        </div>
+                        <div class="controls">
+                            
+                            <% var flag = 0 %>
+                            <% for(fav of songs[i].likedby) {%>
+                                <% if (fav.user._id == locals.user.id) {%>
+                                    <% flag = 1 %>
+                                    <a href="/user/favourite/toggle-fav/?song_id=<%=songs[i].id%>&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>  
+                                    
+                                <% } %>    
+                            <% } %> 
+                            
+                            <% if(flag == 0) { %>
+                                <a href="/user/favourite/toggle-fav/?song_id=<%=songs[i].id%>&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart"></i></a>
+                            <% } %>
+                            <a href="" class="add-que"><i class="fas fa-plus"></i></a>   
+                                    
+                            
+                        </div>
+                    </div>
+                    
+                    
+                
+                </div>
+                <a href="/user/play/?song_id=<%=songs[i]._id%>" class="play-btn" id="play-btn-<%=songs[i]._id%>"><i class="fas fa-play"></i></a>
+                <audio class="audio"></audio>
+            </div>
+        <% } %>    
+
+    </div> 
+
+</div>
+
+
+<script src="/js/favourite.js"></script>
+<script src="/js/play.js"></script>
+
+
+<script>
+    $(' .add-fav').each(function(){
+        let self = this;
+        let tooglefav = new ToogleFav(self);
+    });
+    
+    $(' .play-btn').each(function(){
+        let self = this;
+        let play = new Play(self);
+    })
+</script>

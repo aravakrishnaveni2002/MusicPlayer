@@ -2,7 +2,20 @@ const User = require('../model/User');
 const Song = require('../model/Songs');
 const Favourite = require('../model/Favourite');
 
-module.exports.profile = async function(request,response){
+module.exports.profile =  function(request,response){
+
+        // let userName = request.user.name;
+        // let userEmail = request.user.email; 
+
+        // return response.json(200,{
+        //     message: "Request Successfull",
+        //     data: {
+        //         title: 'Profile',
+        //         userName: userName,
+        //         userEmail: userEmail
+        //     }
+        // });
+    
 
     return response.render('profile',{
         title: 'Profile',

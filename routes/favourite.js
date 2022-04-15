@@ -14,4 +14,6 @@ router.get('/album-songs',passport.checkAuthentication,favouriteController.favAl
 router.get('/artists',passport.checkAuthentication,favouriteController.favArtists);
 router.get('/artist-songs',passport.checkAuthentication,favouriteController.favArtistSongs);
 
+router.get('/recently-played',passport.checkAuthentication,favouriteController.recentlyPlayed);
+
 module.exports = router;

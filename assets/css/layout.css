@@ -2,6 +2,11 @@ body{
     margin: 0;
 }
 
+#body{
+    min-height: 100%;
+    max-height: auto;
+}
+
 #whole-body{
     min-height: 100%;
     max-height: auto;
@@ -10,8 +15,8 @@ body{
 
 .whole-fav{
     background-color: black;
-    height: auto;
-    height: 100%;
+    max-height: auto;
+    min-height: 100%;
 }
 
 .title{
