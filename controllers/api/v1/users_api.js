@@ -1,6 +1,50 @@
 const User = require('../../../model/User');
 const jwt = require('jsonwebtoken');
 
+module.exports.index = async function(request,response){
+
+    try{
+
+        let users = await User.find({})
+        .select('name email')
+        .populate({
+            path: 'favourites',
+            select: 'song',
+            populate: {
+                path: 'song',
+                select: 'name photo link',
+                populate: {
+                    path: 'artists album',
+                    select: 'name'
+                }
+            }
+
+        })
+        .populate({
+            path: 'recentlyPlayed',
+            select: 'name photo link',
+            populate: {
+                path: 'artists album',
+                select: 'name'
+            }
+            
+        })
+
+        return response.json(200,{
+            message: "List of Users",
+            data: {
+                users: users
+            }
+        })
+
+    }catch(err){
+        console.log('**** ',err);
+        return response.json(500,{
+            message: "Internal Server Error"
+        });
+    }
+}
+
 module.exports.createSession = async function(request,response){
 
     try{
