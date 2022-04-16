@@ -1,5 +1,4 @@
 const Song = require('../../../model/Songs');
-const Artist = require('../../../model/Artist');
 
 module.exports.index = async function(request,response){
     
