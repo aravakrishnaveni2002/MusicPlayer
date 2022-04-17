@@ -21,6 +21,11 @@ passport.use(new LocalStrategy({
                 return done(null,false);
             }
 
+            else if(user.emailVerified == false){
+                request.flash('error','Your email is not verified please verify it');
+                return done(null,false);
+            }
+
             return done(null,user);
         }); 
     }
