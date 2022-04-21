@@ -130,6 +130,8 @@ module.exports.play = async function(request,response){
             user = request.user._id;
         }
 
+        // console.log(play);
+
         return response.json(200,{
             message: "Request Successfull",
             data: {

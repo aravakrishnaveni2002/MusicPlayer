@@ -1,46 +1,49 @@
-<% if(songPlaying != 'null') {%>
-    <div class="each-song song-playing" id="each-song-<%=songPlaying%>">
-        <div class="song-info">
-            <a href="/user/album-all-songs/?album_id=<%=songPlaying.album._id%>"><img class="each-photo" src="<%=songPlaying.photo%>" alt=""></a>
-            <div class="details">
-                <div>
-                    <span class="song-name"><%=songPlaying.name%></span>
-                    <br>
-                    
-                    <span class="song-artist-album"><%=songPlaying.album.name%> - </span>
-                    <% for(let i=0;i<songPlaying.artists.length;i++) {%>
+<div>
+    <% if(songPlaying != 'null') {%>
+        <div class="each-song" id="song-playing-<%=songPlaying._id%>">
+            <div class="song-info">
+                <a href="/user/album-all-songs/?album_id=<%=songPlaying.album._id%>"><img class="each-photo" src="<%=songPlaying.photo%>" alt=""></a>
+                <div class="details">
+                    <div>
+                        <span class="song-name"><%=songPlaying.name%></span>
+                        <br>
                         
-                        <% if(i == songPlaying.artists.length-1) {%>
-                            <span class="song-artist-album"><%= songPlaying.artists[i].name %></span>
-                        <%} else { %>
-                            <span class="song-artist-album"><%= songPlaying.artists[i].name %>,</span>
-                        <% } %>
-                        
-                    
-                    <% } %>
-                </div>
-                <div class="controls">
-                    <% if(locals.user) {%> 
-                        <% var flag = 0 %>
-                        <% for (fav of songPlaying.likedby) { %>
-                            <% if(fav.user == locals.user.id) {%>
-                                <% flag = 1 %>
-                                <a href="/user/favourite/toggle-fav/?song_id=<%=songPlaying._id%>&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>
+                        <span class="song-artist-album"><%=songPlaying.album.name%> - </span>
+                        <% for(let i=0;i<songPlaying.artists.length;i++) {%>
+                            
+                            <% if(i == songPlaying.artists.length-1) {%>
+                                <span class="song-artist-album"><%= songPlaying.artists[i].name %></span>
+                            <%} else { %>
+                                <span class="song-artist-album"><%= songPlaying.artists[i].name %>,</span>
                             <% } %>
+                            
+                        
                         <% } %>
-                        
-                        <% if(flag == 0) {%>
-                            <a href="/user/favourite/toggle-fav/?song_id=<%=songPlaying._id%>&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart" ></i></a>
-                        <%}%>
-                        <a href="" class="add-que"><i class="fas fa-plus"></i></a>
-                        
-                    <% } %>    
+                    </div>
+                    <div class="controls">
+                        <% if(locals.user) {%> 
+                            <% var flag = 0 %>
+                            <% for (fav of songPlaying.likedby) { %>
+                                <% if(fav.user == locals.user.id) {%>
+                                    <% flag = 1 %>
+                                    <a href="/user/favourite/toggle-fav/?song_id=<%=songPlaying._id%>&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>
+                                <% } %>
+                            <% } %>
+                            
+                            <% if(flag == 0) {%>
+                                <a href="/user/favourite/toggle-fav/?song_id=<%=songPlaying._id%>&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart" ></i></a>
+                            <%}%>
+                            <a href="" class="add-que"><i class="fas fa-plus"></i></a>
+                            
+                        <% } %>    
+                    </div>
                 </div>
-            </div>
+                
             
-        
+            </div>
+            <a href="/user/play/?song_id=<%=songPlaying._id%>" class="play-btn" id="play-btn-<%=songPlaying._id%>"><i class="fas fa-play"></i></a>
+            <audio class="audio"></audio>
         </div>
-        <a href="/user/play/?song_id=<%=songPlaying._id%>" class="play-btn" id="play-btn-<%=songPlaying._id%>"><i class="fas fa-play"></i></a>
-        <audio class="audio"></audio>
-    </div>
-    <% } %>
+        <% } %>
+
+</div>

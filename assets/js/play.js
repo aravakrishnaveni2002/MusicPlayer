@@ -17,20 +17,31 @@ class Play{
             })
             .done(function(data){
 
-                console.log(data.data);
-                
                 if(data.data.songPlayingPrev != null){ 
                     $(`#play-btn-${data.data.songPlayingPrev}`).html(`<i class="fas fa-play" style="color: grey"></i>`);
                     
                 }
 
+
                 if(data.data.play == true){
-                    $(self).html(`<i class="fas fa-play" style="color: aquamarine"></i>`);     
-                    $(`.song-playing`).remove();
+                    let flag = false;
+                    $(self).html(`<i class="fas fa-play" style="color: aquamarine"></i>`); 
+                    // $(`.audio`)[0].src = data.data.song.link;
+                    // $(`.audio`)[0].play();
+                    $(`.audio`).each(function(){
+                        if($(this).attr('src') != undefined){
+                            flag = true;
+                            this.src = data.data.song.link;
+                            this.play();
+                        }
+                    })
+                    if(!flag){
+                        $(`.audio`)[0].src = data.data.song.link;
+                        $(`.audio`)[0].play();
+                    }
+                    $(`.song-playing div`).css({"height": "0px","min-height":"0px","visibility":"hidden"});
                     let newSong = newSongDom(data.data.song,data.data.user);
-                    $(`#whole-body`).append(newSong);
-                    $(`.audio`)[0].src = data.data.song.link;
-                    $(`.audio`)[0].play();
+                    $(`.song-playing`).append(newSong);
                     new Play($(' .play-btn',newSong));
                     new ToogleFav($(' .add-fav',newSong));
             
@@ -38,7 +49,12 @@ class Play{
 
                 else{
                     $(self).html(`<i class="fas fa-play" style="color: grey"></i>`);
-                    $(`audio`)[0].pause();
+                    $(`.audio`).each(function(){
+                        if($(this).attr('src') != undefined){
+                            this.pause();
+                        }
+                    })
+                    // $(`.audio`)[0].pause();
                 }
 
                 
@@ -84,7 +100,8 @@ class Play{
             }
         }
         
-        return $(`<div class="each-song song-playing" id="each-song-${song._id}">
+        return $(`<div>
+        <div class="each-song" id="song-playing-${song._id}">
         <div class="song-info">
             <a href="/user/album-all-songs/?album_id=${song.album._id}"><img class="each-photo" src="${song.photo}" alt=""></a>
             <div class="details">
@@ -104,5 +121,6 @@ class Play{
         </div>
         <a href="/user/play/?song_id=${song._id}" class="play-btn" id="play-btn-${song._id}"><i class="fas fa-play" style="color: aquamarine"></i></a>
         <audio class="audio"></audio>
-    </div>`);
+        </div>
+        </div>`);
     }

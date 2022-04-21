@@ -15,12 +15,21 @@ module.exports.favSongs = async function(request,response){
             path: 'song',
             populate: 'album artists'
             
-        })    
+        })  
+        
+        return response.json(200,{
+            message: "Request Successfull",
+            data: {
+                title: "Favourite Songs",
+                favourites: favourites,
+                user: request.user._id
+            }
+        })
     
-        return response.render('favouriteSongs',{
-            title: "Favourite Songs",
-            favourites: favourites
-        });
+        // return response.render('favouriteSongs',{
+        //     title: "Favourite Songs",
+        //     favourites: favourites
+        // });
     }catch(err){
         console.log("Error ",err);
         return;

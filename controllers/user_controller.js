@@ -12,15 +12,19 @@ module.exports.profile =  function(request,response){
         // let userName = request.user.name;
         // let userEmail = request.user.email; 
 
-        // return response.json(200,{
-        //     message: "Request Successfull",
-        //     data: {
-        //         title: 'Profile',
-        //         userName: userName,
-        //         userEmail: userEmail
-        //     }
-        // });
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successfull",
+                data: {
+                    title: 'Profile',
+                    userName: request.user.name,
+                    userEmail: request.user.email
+                }
+            });
+        }
     
+
+
 
     return response.render('profile',{
         title: 'Profile',

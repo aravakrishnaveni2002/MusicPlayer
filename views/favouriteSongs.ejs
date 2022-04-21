@@ -1,44 +1,47 @@
-<div class="whole-fav">
-    <div class="title"><%= title%></div>
-
-
-    <div class="songs-container">
-        <% for(fav of favourites) {%>
-            <% if (fav.user._id == locals.user.id) {%>
-                <div class="each-song" id="each-song-<%=fav.song._id%>">
-                    <div class="song-info">
-                        <a href="/user/album-all-songs/?album_id=<%=fav.song.album._id%>"><img class="each-photo" src="<%= fav.song.photo%>" alt=""></a>
-                    
-                        <div class="details">
-                            <div>
-                                <span class="song-name"><%=fav.song.name%></span>
-                                <br>
-                                <span class="song-artist-album"><%=fav.song.album.name%> - </span>
-                                <% for(let i=0;i<fav.song.artists.length;i++) {%>
-                                    
-                                    <% if(i == fav.song.artists.length-1) {%>
-                                        <span class="song-artist-album"><%= fav.song.artists[i].name %></span>
-                                    <%} else { %>
-                                        <span class="song-artist-album"><%= fav.song.artists[i].name %>,</span>
-                                    <% } %>
-                                    
-                                
-                                <% } %>
-                            </div>
-                            <div class="controls">
-                                <a href="/user/favourite/toggle-fav/?song_id=<%=fav.song.id%>&loc=profile" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>
-                                <a href="" class="add-que"><i class="fas fa-plus"></i></a>   
+<div>
+    <div class="whole-fav">
+        <div class="title"><%= title%></div>
+    
+    
+        <div class="songs-container">
+            <% for(fav of favourites) {%>
+                <% if (fav.user._id == locals.user.id) {%>
+                    <div class="each-song" id="each-song-<%=fav.song._id%>">
+                        <div class="song-info">
+                            <a href="/user/album-all-songs/?album_id=<%=fav.song.album._id%>"><img class="each-photo" src="<%= fav.song.photo%>" alt=""></a>
+                        
+                            <div class="details">
+                                <div>
+                                    <span class="song-name"><%=fav.song.name%></span>
+                                    <br>
+                                    <span class="song-artist-album"><%=fav.song.album.name%> - </span>
+                                    <% for(let i=0;i<fav.song.artists.length;i++) {%>
                                         
+                                        <% if(i == fav.song.artists.length-1) {%>
+                                            <span class="song-artist-album"><%= fav.song.artists[i].name %></span>
+                                        <%} else { %>
+                                            <span class="song-artist-album"><%= fav.song.artists[i].name %>,</span>
+                                        <% } %>
+                                        
+                                    
+                                    <% } %>
+                                </div>
+                                <div class="controls">
+                                    <a href="/user/favourite/toggle-fav/?song_id=<%=fav.song.id%>&loc=profile" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>
+                                    <a href="" class="add-que"><i class="fas fa-plus"></i></a>   
+                                            
+                                </div>
                             </div>
+                        
                         </div>
-                    
+                        <a href="/user/play/?song_id=<%=fav.song._id%>" class="play-btn" id="play-btn-<%=fav.song._id%>"><i class="fas fa-play"></i></a>
+                        <audio class="audio"></audio>
                     </div>
-                    <a href="/user/play/?song_id=<%=fav.song._id%>" class="play-btn" id="play-btn-<%=fav.song._id%>"><i class="fas fa-play"></i></a>
-                    <audio class="audio"></audio>
-                </div>
+                <% } %>    
             <% } %>    
-        <% } %>    
+        </div>
     </div>
+    
 </div>
 
 <script src="/js/favourite.js"></script>
