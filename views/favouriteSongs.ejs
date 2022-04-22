@@ -1,5 +1,5 @@
 <div>
-    <div class="whole-fav">
+    <div class="whole-fav" id="favourite-songs">
         <div class="title"><%= title%></div>
     
     
@@ -44,16 +44,4 @@
     
 </div>
 
-<script src="/js/favourite.js"></script>
-<script src="/js/play.js"></script>
 
-<script>
-    $(' .add-fav').each(function(){
-        let self = this;
-        let tooglefav = new ToogleFav(self);
-    });
-    $(' .play-btn').each(function(){
-        let self = this;
-        let play = new Play(self);
-    })
-</script>

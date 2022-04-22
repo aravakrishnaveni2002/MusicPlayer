@@ -38,14 +38,15 @@ class FavouriteSongs {
                                 artists = artists + fav.song.artists[i].name+ ",";
                             }
                         }
-                        let eachSong = eachSongDom(fav,artists);
-                        $(`.whole-fav > .songs-container`).append(eachSong);
+                        let eachSong = eachFavSongDom(fav,artists);
+                        $(`#favourite-songs > .songs-container`).append(eachSong);
                     }
                 }        
 
                 new Play($(' .play-btn',favSongs));
                 new ToogleFav($(' .add-fav',favSongs));
                 new Profile($(' .profile_ele',favSongs));
+                new AllSongsOfAlbum($(' .each-album-all',favSongs));
             })
             .fail(function(errData){
                 console.log("Error in completing the request ",errData);
@@ -58,7 +59,7 @@ class FavouriteSongs {
 let favSongsDom = function(data){
 
     return $(`<div>
-    <div class="whole-fav">
+    <div class="whole-fav" id="favourite-songs">
         <div class="title">${data.data.title}</div>
     
     
@@ -71,11 +72,11 @@ let favSongsDom = function(data){
     
 }
 
-let eachSongDom = function(fav,artists){
+let eachFavSongDom = function(fav,artists){
 
     return $(`<div class="each-song" id="each-song-${fav.song._id}">
     <div class="song-info">
-        <a href="/user/album-all-songs/?album_id=${fav.song.album._id}"><img class="each-photo" src="${fav.song.photo}" alt=""></a>
+        <a href="/user/album-all-songs/?album_id=${fav.song.album._id}" class="each-album-all"><img class="each-photo" src="${fav.song.photo}" alt=""></a>
     
         <div class="details">
             <div>

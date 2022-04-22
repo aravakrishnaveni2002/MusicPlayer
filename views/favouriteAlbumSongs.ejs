@@ -1,12 +1,14 @@
-<div class="whole-fav">
+<div>
+
+<div class="whole-fav" id="favourite-album-songs">
     <div class="title"><%= title%></div>
 
     <div class="album-artist-details-photo">
-        <a href="/user/album-all-songs/?album_id=<%=album._id%>"><img src="<%=album.photo%>" alt="" class="album-photo"></a>
+        <a href="/user/album-all-songs/?album_id=<%=album._id%>" class="each-album-all"><img src="<%=album.photo%>" alt="" class="album-photo"></a>
     </div>
 
     <div class="album-artist-name-heading">
-        <a href="/user/album-all-songs/?album_id=<%=album._id%>"><%=album.name%></a>
+        <a href="/user/album-all-songs/?album_id=<%=album._id%>" class="each-album-all"><%=album.name%></a>
     </div>
 
     <div class="songs-container">
@@ -57,16 +59,5 @@
 
 </div>    
 
-<script src="/js/favourite.js"></script>
-<script src="/js/play.js"></script>
+</div>
 
-<script>
-    $(' .add-fav').each(function(){
-        let self = this;
-        let tooglefav = new ToogleFav(self);
-    });
-    $(' .play-btn').each(function(){
-        let self = this;
-        let play = new Play(self);
-    })
-</script>

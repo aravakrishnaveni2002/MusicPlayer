@@ -13,7 +13,7 @@ class Profile{
 
             $.ajax({
                 type: 'GET',
-                url: '/user/profile'
+                url: $(self).attr('href')
             })
             .done(function(data){
                 
@@ -28,6 +28,9 @@ class Profile{
                 new ToogleFav($(' .add-fav',profile));
                 new Profile($(' .profile_ele',profile));
                 new FavouriteSongs($(' #fav-songs',profile));
+                new FavouriteAlbums($(' #fav-albums',profile));
+                new FavouriteArtists($(' #fav-artists',profile));
+                new RecentlyPlayed($(' #recently-played',profile));
             })    
             .fail(function(errData){
                 console.log("Error in completing the request ",errData);
@@ -58,8 +61,9 @@ let profileDom = function(data){
                     
                     <div id="user-controls">
                        <div><a href="/user/favourite/songs" class="each-ele headings" id="fav-songs">Songs</a></div>
-                       <div><a href="/user/favourite/albums" class="each-ele headings">Albums</a></div>
-                       <div><a href="/user/favourite/artists" class="each-ele headings">Artists</a></div>
+                       <div><a href="/user/favourite/albums" class="each-ele headings" id="fav-albums">Albums</a></div>
+                       <div><a href="/user/favourite/artists" class="each-ele headings" id="fav-artists">Artists</a></div>
+                       <div><a href="/user/favourite/recently-played" class="each_ele headings" id="recently-played">Recently Played</a></div>
                     </div>
                     
                 </div>

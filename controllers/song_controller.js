@@ -160,6 +160,22 @@ module.exports.allSongsOfAlbum = async function(request,response){
             populate: 'likedby artists'
         })
 
+        var user = '';
+        if(request.user != undefined){
+            user = request.user._id
+        }
+
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successful",
+                data: {
+                    title: "All Songs",
+                    album: album,
+                    user: user
+                }
+            })
+        }
+
         return response.render('allSongsOfAlbum',{
             title: 'All Songs',
             album: album
@@ -178,6 +194,22 @@ module.exports.allSongsOfArtist = async function(request,response){
             path: 'songs',
             populate: 'likedby album'
         })
+
+        var user = '';
+        if(request.user != undefined){
+            user = request.user._id
+        }
+
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successful",
+                data: {
+                    title: "All Songs",
+                    artist: artist,
+                    user: user
+                }
+            })
+        }
 
         return response.render('allSongsOfArtist',{
             title: "All Songs",

@@ -4,6 +4,17 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+        <script src="/js/profile.js"></script>
+        <script src="/js/favourite.js"></script>
+        <script src="/js/play.js"></script>
+        <script src="/js/favouriteSongs.js"></script>
+        <script src="/js/favouriteAlbums.js"></script>
+        <script src="/js/favouriteAlbumSongs.js"></script>
+        <script src="/js/allSongsOfAlbum.js"></script>
+        <script src="/js/favouriteArtists.js"></script>
+        <script src="/js/favouriteArtistSongs.js"></script>
+        <script src="/js/allSongsOfArtist.js"></script>
+        <script src="/js/recentlyPlayed.js"></script>
         <%- style %>
     </head>
 
@@ -43,6 +54,60 @@
                     timeout: 1500
                 }).show();
             <% } %>
+        </script>
+
+        <script>
+
+            $(' .add-fav').each(function(){
+                let self = this;
+                new ToogleFav(self);
+            });
+            
+            $(' .play-btn').each(function(){
+                let self = this;
+                new Play(self);
+            });
+
+            $(' #fav-songs').each(function(){
+                let self = this;
+                new FavouriteSongs(self);
+            });
+
+            $(' #fav-albums').each(function(){
+                let self = this;
+                new FavouriteAlbums(self);
+            });
+                
+            $(' #fav-artists').each(function(){
+                let self = this;
+                new FavouriteArtists(self);
+            });
+
+            $(' #recently-played').each(function(){
+                let self = this;
+                new RecentlyPlayed(self);
+            });
+
+            $(' .each-album-fav').each(function(){
+                let self = this;
+                new FavouriteAlbumSongs(self);
+            });
+
+            $(' .each-artist-fav').each(function(){
+                let self = this;
+                new FavouriteArtistSongs(self);
+            });
+
+            $(' .each-album-all').each(function(){
+                let self = this;
+                new AllSongsOfAlbum(self);
+            });
+
+            $(' .each-artist-all').each(function(){
+                let self = this;
+                new AllSongsOfArtist(self);
+            });
+
         </script>
         
     </body>

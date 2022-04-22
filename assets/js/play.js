@@ -44,7 +44,7 @@ class Play{
                     $(`.song-playing`).append(newSong);
                     new Play($(' .play-btn',newSong));
                     new ToogleFav($(' .add-fav',newSong));
-            
+                    new AllSongsOfAlbum($(' .each-album-all',newSong));
                 }
 
                 else{
@@ -74,16 +74,16 @@ class Play{
         
         if(user){
             adQu = '<a href="" class="add-que"><i class="fas fa-plus"></i></a>';
+            var flag = 0;
             for(fav of song.likedby){
                 //console.log(fav.user,user._id);
                 if(fav.user == user){
+                    flag = 1;
                     togfav = '<a href="/user/favourite/toggle-fav/?song_id='+song._id+'&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>';
                 }
-                else{
-                    togfav = '<a href="/user/favourite/toggle-fav/?song_id='+song._id+'&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart" ></i></a>';
-                }
+                
             }
-            if(song.likedby.length == 0){
+            if(flag == 0){
                 togfav = '<a href="/user/favourite/toggle-fav/?song_id='+song._id+'&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart" ></i></a>';
             }
         
@@ -103,7 +103,7 @@ class Play{
         return $(`<div>
         <div class="each-song" id="song-playing-${song._id}">
         <div class="song-info">
-            <a href="/user/album-all-songs/?album_id=${song.album._id}"><img class="each-photo" src="${song.photo}" alt=""></a>
+            <a href="/user/album-all-songs/?album_id=${song.album._id}" class="each-album-all"><img class="each-photo" src="${song.photo}" alt=""></a>
             <div class="details">
                 <div>
                     <span class="song-name">${song.name}</span>

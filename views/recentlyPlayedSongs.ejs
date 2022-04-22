@@ -1,5 +1,5 @@
 
-<div class="whole-fav">
+<div class="whole-fav" id="recently-played-songs">
     <div class="title"><%= title%></div>
 
     <div class="songs-container">
@@ -7,7 +7,7 @@
         <% for (let i=songs.length-1;i>=0;i--) { %>
             <div class="each-song" id="each-song-<%=songs[i]._id%>">
                 <div class="song-info">
-                    <a href="/user/album-all-songs/?album_id=<%=songs[i].album._id%>"><img class="each-photo" src="<%= songs[i].photo%>" alt=""></a>
+                    <a href="/user/album-all-songs/?album_id=<%=songs[i].album._id%>" class="each-album-all"><img class="each-photo" src="<%= songs[i].photo%>" alt=""></a>
                     <div class="details">
                         <div>
                             <span class="song-name"><%=songs[i].name%></span>
@@ -59,18 +59,3 @@
 </div>
 
 
-<script src="/js/favourite.js"></script>
-<script src="/js/play.js"></script>
-
-
-<script>
-    $(' .add-fav').each(function(){
-        let self = this;
-        let tooglefav = new ToogleFav(self);
-    });
-    
-    $(' .play-btn').each(function(){
-        let self = this;
-        let play = new Play(self);
-    })
-</script>

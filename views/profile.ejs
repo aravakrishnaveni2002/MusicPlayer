@@ -13,25 +13,10 @@
         
         <div id="user-controls">
         <div><a href="/user/favourite/songs" class="each-ele headings" id="fav-songs">Songs</a></div>
-        <div><a href="/user/favourite/albums" class="each-ele headings">Albums</a></div>
-        <div><a href="/user/favourite/artists" class="each-ele headings">Artists</a></div>
-        <div><a href="/user/favourite/recently-played" class="each_ele headings">Recently Played</a></div>
+        <div><a href="/user/favourite/albums" class="each-ele headings" id="fav-albums">Albums</a></div>
+        <div><a href="/user/favourite/artists" class="each-ele headings" id="fav-artists">Artists</a></div>
+        <div><a href="/user/favourite/recently-played" class="each_ele headings" id="recently-played">Recently Played</a></div>
         </div>
     
     </div>
 </div>
-
-<script src="/js/favourite.js"></script>
-<script src="/js/play.js"></script>
-
-
-<script>
-    $(' .add-fav').each(function(){
-        let self = this;
-        let tooglefav = new ToogleFav(self);
-    });
-    $(' .play-btn').each(function(){
-        let self = this;
-        let play = new Play(self);
-    })
-</script>

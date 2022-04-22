@@ -17,19 +17,21 @@ module.exports.favSongs = async function(request,response){
             
         })  
         
-        return response.json(200,{
-            message: "Request Successfull",
-            data: {
-                title: "Favourite Songs",
-                favourites: favourites,
-                user: request.user._id
-            }
-        })
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successfull",
+                data: {
+                    title: "Favourite Songs",
+                    favourites: favourites,
+                    user: request.user._id
+                }
+            })
+        }
     
-        // return response.render('favouriteSongs',{
-        //     title: "Favourite Songs",
-        //     favourites: favourites
-        // });
+        return response.render('favouriteSongs',{
+            title: "Favourite Songs",
+            favourites: favourites
+        });
     }catch(err){
         console.log("Error ",err);
         return;
@@ -47,6 +49,17 @@ module.exports.favAlbums = async function(request,response){
                 path: 'album artists',
             }
         })
+
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successfull",
+                data: {
+                    title: "Favourite Albums",
+                    favourites: favourites,
+                    user: request.user._id
+                }
+            })
+        }
 
         return response.render('favouriteAlbums',{
             title: "Favourite Albums",
@@ -70,6 +83,17 @@ module.exports.favArtists = async function(request,response){
             }
         })
 
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successfull",
+                data: {
+                    title: "Favourite Artists",
+                    favourites: favourites,
+                    user: request.user._id
+                }
+            })
+        }
+
         return response.render('favouriteArtists',{
             title: "Favourite Artists",
             favourites: favourites
@@ -84,6 +108,7 @@ module.exports.favArtists = async function(request,response){
 module.exports.favAlbumSongs = async function(request,response){
 
     try{
+
         let album = await Album.findById(request.query.album_id)
         .populate({
             path: 'songs',
@@ -92,10 +117,24 @@ module.exports.favAlbumSongs = async function(request,response){
             }
         })
 
+        
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successfull",
+                data: {
+                    title: "Favourite Album Songs",
+                    album: album,
+                    user: request.user._id
+                }
+            })
+        }
+        
+
+
         return response.render('favouriteAlbumSongs',{
             title: 'Favourite Album Songs',
             album: album
-        })
+        });
     }catch(err){
         console.log("Error ",err);
         return;
@@ -112,6 +151,17 @@ module.exports.favArtistSongs = async function(request,response){
             path: 'songs',
             populate: 'likedby album'
         })
+
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successfull",
+                data: {
+                    title: "Favourite Artist Songs",
+                    artist: artist,
+                    user: request.user._id
+                }
+            })
+        }
 
         return response.render('favouriteArtistSongs',{
             title: "Favourite Artist Songs",
@@ -192,6 +242,17 @@ module.exports.recentlyPlayed = async function(request,response){
             path: 'recentlyPlayed',
             populate: 'album artists likedby'
         })
+
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successfull",
+                data: {
+                    title: "Recently played",
+                    songs: user.recentlyPlayed,
+                    user: request.user._id
+                }
+            })
+        }
 
         return response.render('recentlyPlayedSongs',{
             title: 'Recently Played',
