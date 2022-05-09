@@ -20,7 +20,7 @@ class FavouriteArtistSongs {
                 let favArtistSongs = favArtistSongsDom(data);
                 $(`.title`).css({"height": "0px","visibility":"hidden","padding-bottom": "0px"});
                 $(`#body div`).css({"height": "0px","min-height":"0px","visibility":"hidden"});
-                $(`#body`).prepend(favArtistSongs);
+                $(`#body`).append(favArtistSongs);
                 for (let song of data.data.artist.songs) {
                     for (let fav of song.likedby) {
                         if(fav.user == data.data.user) {

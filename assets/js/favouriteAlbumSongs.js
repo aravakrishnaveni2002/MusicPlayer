@@ -20,7 +20,7 @@ class FavouriteAlbumSongs {
                 let favAlbumSongs = favAlbumSongsDom(data);
                 $(`.title`).css({"height": "0px","visibility":"hidden","padding-bottom": "0px"});
                 $(`#body div`).css({"height": "0px","min-height":"0px","visibility":"hidden"});
-                $(`#body`).prepend(favAlbumSongs);
+                $(`#body`).append(favAlbumSongs);
                 for (let song of data.data.album.songs) {
                     for (let fav of song.likedby) {
                         if(fav.user == data.data.user) {
@@ -32,7 +32,7 @@ class FavouriteAlbumSongs {
                                 }
                     
                                 else{
-                                    artists = artists + song.artists[i].name+ ",";
+                                    artists = artists + song.artists[i].name+ ", ";
                                 }
                             }
                             let eachSong = eachAlbumSongDom(song,artists);

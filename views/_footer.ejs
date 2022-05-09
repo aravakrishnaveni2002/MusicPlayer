@@ -1,5 +1,12 @@
 <link rel="stylesheet" href="/css/footer.css">
 
 <div id="whole-footer">
-    <div><a class="headings" href="/">Home</a></div>
+    <div><a class="headings home" href="/">Home</a></div>
 </div>
+
+<script>
+    $(' .home').each(function(){
+        let self = this;
+         new Home(self);
+    });
+</script>

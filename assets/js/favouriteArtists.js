@@ -20,7 +20,7 @@ class FavouriteArtists {
                 let favArtists = favArtistsDom(data);
                 $(`.title`).css({"height": "0px","visibility":"hidden","padding-bottom": "0px"});
                 $(`#body div`).css({"height": "0px","min-height":"0px","visibility":"hidden"});
-                $(`#body`).prepend(favArtists);
+                $(`#body`).append(favArtists);
                 var obj = new Object();
 
                 for(let fav of data.data.favourites) {

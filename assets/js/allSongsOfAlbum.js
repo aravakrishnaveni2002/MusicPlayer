@@ -21,7 +21,7 @@ class AllSongsOfAlbum{
                 let allSongs = allSongsofAlbumDom(data);
                 $(`.title`).css({"height": "0px","visibility":"hidden","padding-bottom": "0px"});
                 $(`#body div`).css({"height": "0px","min-height":"0px","visibility":"hidden"});
-                $(`#body`).prepend(allSongs);
+                $(`#body`).append(allSongs);
                 for(let song of data.data.album.songs){
                     let artists = '';
                     for(let i=0;i<song.artists.length;i++){
@@ -31,7 +31,7 @@ class AllSongsOfAlbum{
                         }
             
                         else{
-                            artists = artists + song.artists[i].name+ ",";
+                            artists = artists + song.artists[i].name+ ", ";
                         }
                     }
                     var togfav = '';

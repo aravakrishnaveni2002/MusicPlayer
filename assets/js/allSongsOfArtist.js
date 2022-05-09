@@ -21,7 +21,7 @@ class AllSongsOfArtist{
                 let allSongs = allSongsofArtistDom(data);
                 $(`.title`).css({"height": "0px","visibility":"hidden","padding-bottom": "0px"});
                 $(`#body div`).css({"height": "0px","min-height":"0px","visibility":"hidden"});
-                $(`#body`).prepend(allSongs);
+                $(`#body`).append(allSongs);
                 for(let song of data.data.artist.songs){
                     var togfav = '';
                     var adQu = '';

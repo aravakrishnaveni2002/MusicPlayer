@@ -18,7 +18,21 @@ module.exports.home = async function(request,response){
         .populate('album artists')
         .sort({'name': 1})
 
-        
+        var user = '';
+        if(request.user != undefined){
+            user = request.user._id
+        }
+
+        if(request.xhr){
+            return response.json(200,{
+                message: "Request Successfull",
+                data: {
+                    title: "Home",
+                    songs: songs,
+                    user: user
+                }
+            })
+        }
 
         return response.render('home',{
             title: "Home",

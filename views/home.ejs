@@ -1,82 +1,24 @@
-<link rel="stylesheet" href="css/home.css">
-
 <div>
-    <div class="title">
-        Music Player | <%= title %>
-    </div>
-    
-    
-    <div id="whole-home">
+    <link rel="stylesheet" href="/css/home.css">
+
+    <div>
+        <div class="title">
+            Music Player | <%= title %>
+        </div>
         
-        <div class="songs-container">
-    
-            <div class="sub-heading">
-                All Songs
-            </div>
-    
-            <% for (song of songs) { %>
-                <div class="each-song" id="each-song-<%=song._id%>">
-                    <div class="song-info">
-                        <a href="/user/album-all-songs/?album_id=<%=song.album._id%>"><img class="each-photo" src="<%= song.photo%>" alt=""></a>
-                        <div class="details">
-                            <div>
-                                <span class="song-name"><%=song.name%></span>
-                                <br>
-                                <span class="song-artist-album"><%=song.album.name%> - </span>
-                                <% for(let i=0;i<song.artists.length;i++) {%>
-                                    
-                                    <% if(i == song.artists.length-1) {%>
-                                        <span class="song-artist-album"><%= song.artists[i].name %></span>
-                                    <%} else { %>
-                                        <span class="song-artist-album"><%= song.artists[i].name %>,</span>
-                                    <% } %>
-                                    
-                                
-                                <% } %>   
-                                
-                                
-                            </div>
-                            <div class="controls">
-                                <%if(locals.user){%>
-                                    <% var flag = 0 %>
-                                    <% for(fav of song.likedby) {%>
-                                        <% if (fav.user._id == locals.user.id) {%>
-                                            <% flag = 1 %>
-                                            <a href="/user/favourite/toggle-fav/?song_id=<%=song.id%>&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>  
-                                            
-                                        <% } %>    
-                                    <% } %> 
-                                    
-                                    <% if(flag == 0) { %>
-                                        <a href="/user/favourite/toggle-fav/?song_id=<%=song.id%>&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart"></i></a>
-                                    <% } %>
-                                    <a href="" class="add-que"><i class="fas fa-plus"></i></a>   
-                                        
-                                <%}%>
-                            </div>
-                        </div>
-                        
-                        
-                    
-                    </div>
-                    <a href="/user/play/?song_id=<%=song._id%>" class="play-btn" id="play-btn-<%=song._id%>"><i class="fas fa-play"></i></a>
-                    <audio class="audio"></audio>
+        
+        <div id="whole-home">
+            
+            <div class="songs-container">
+        
+                <div class="sub-heading">
+                    All Songs
                 </div>
-            <% } %>    
-    
-        </div> 
         
-        <div class="trending-songs">
-    
-            <div class="sub-heading">
-                Trending Songs
-            </div>
-    
-            <% for (song of songs) { %>
-                <% if(song.likedby.length >= 2) {%>
+                <% for (song of songs) { %>
                     <div class="each-song" id="each-song-<%=song._id%>">
                         <div class="song-info">
-                            <a href="/user/album-all-songs/?album_id=<%=song.album._id%>"><img class="each-photo" src="<%= song.photo%>" alt=""></a>
+                            <a href="/user/album-all-songs/?album_id=<%=song.album._id%>" class="each-album-all"><img class="each-photo" src="<%= song.photo%>" alt=""></a>
                             <div class="details">
                                 <div>
                                     <span class="song-name"><%=song.name%></span>
@@ -91,15 +33,13 @@
                                         <% } %>
                                         
                                     
-                                    <% } %>
+                                    <% } %>   
                                     
                                     
                                 </div>
                                 <div class="controls">
                                     <%if(locals.user){%>
-        
                                         <% var flag = 0 %>
-        
                                         <% for(fav of song.likedby) {%>
                                             <% if (fav.user._id == locals.user.id) {%>
                                                 <% flag = 1 %>
@@ -123,14 +63,77 @@
                         <a href="/user/play/?song_id=<%=song._id%>" class="play-btn" id="play-btn-<%=song._id%>"><i class="fas fa-play"></i></a>
                         <audio class="audio"></audio>
                     </div>
-                <%}%>
-                
-            <% } %>    
-    
-        </div> 
+                <% } %>    
+        
+            </div> 
+            
+            <div class="trending-songs">
+        
+                <div class="sub-heading">
+                    Trending Songs
+                </div>
+        
+                <% for (song of songs) { %>
+                    <% if(song.likedby.length >= 1) {%>
+                        <div class="each-song" id="each-song-<%=song._id%>">
+                            <div class="song-info">
+                                <a href="/user/album-all-songs/?album_id=<%=song.album._id%>" class="each-album-all"><img class="each-photo" src="<%= song.photo%>" alt=""></a>
+                                <div class="details">
+                                    <div>
+                                        <span class="song-name"><%=song.name%></span>
+                                        <br>
+                                        <span class="song-artist-album"><%=song.album.name%> - </span>
+                                        <% for(let i=0;i<song.artists.length;i++) {%>
+                                            
+                                            <% if(i == song.artists.length-1) {%>
+                                                <span class="song-artist-album"><%= song.artists[i].name %></span>
+                                            <%} else { %>
+                                                <span class="song-artist-album"><%= song.artists[i].name %>,</span>
+                                            <% } %>
+                                            
+                                        
+                                        <% } %>
+                                        
+                                        
+                                    </div>
+                                    <div class="controls">
+                                        <%if(locals.user){%>
+            
+                                            <% var flag = 0 %>
+            
+                                            <% for(fav of song.likedby) {%>
+                                                <% if (fav.user._id == locals.user.id) {%>
+                                                    <% flag = 1 %>
+                                                    <a href="/user/favourite/toggle-fav/?song_id=<%=song.id%>&loc=home" class="add-fav" style="color: red"><i class="fas fa-heart" ></i></a>  
+                                                    
+                                                <% } %>    
+                                            <% } %> 
+                                            
+                                            <% if(flag == 0) { %>
+                                                <a href="/user/favourite/toggle-fav/?song_id=<%=song.id%>&loc=home" class="add-fav" style="color: white"><i class="fas fa-heart"></i></a>
+                                            <% } %>
+                                            <a href="" class="add-que"><i class="fas fa-plus"></i></a>   
+                                                
+                                        <%}%>
+                                    </div>
+                                </div>
+                                
+                                
+                            
+                            </div>
+                            <a href="/user/play/?song_id=<%=song._id%>" class="play-btn" id="play-btn-<%=song._id%>"><i class="fas fa-play"></i></a>
+                            <audio class="audio"></audio>
+                        </div>
+                    <%}%>
+                    
+                <% } %>    
+        
+            </div> 
+            
+            
+        </div>
         
         
     </div>
-    
-    
+
 </div>

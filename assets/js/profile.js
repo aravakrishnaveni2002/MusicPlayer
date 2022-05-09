@@ -21,7 +21,7 @@ class Profile{
                 
                 $(`.title`).css({"height": "0px","visibility":"hidden","padding-bottom": "0px"});
                 $(`#body div`).css({"height": "0px","min-height":"0px","visibility":"hidden"});
-                $(`#body`).prepend(profile);
+                $(`#body`).append(profile);
                 
 
                 new Play($(' .play-btn',profile));

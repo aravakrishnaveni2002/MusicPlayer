@@ -22,7 +22,7 @@ class FavouriteSongs {
                 let favSongs = favSongsDom(data);
                 $(`.title`).css({"height": "0px","visibility":"hidden","padding-bottom": "0px"});
                 $(`#body div`).css({"height": "0px","min-height":"0px","visibility":"hidden"});
-                $(`#body`).prepend(favSongs);
+                $(`#body`).append(favSongs);
 
                 for(let fav of data.data.favourites){
 
