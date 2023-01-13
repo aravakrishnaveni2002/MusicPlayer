@@ -1,16 +1,16 @@
 #Musical
 
-It's a Music Player website
+It's a Music Player Website.  
 
 Features -
 
-. Added signin/signup/signup option for a user
-. Add favoutites to a song
-. Displayed all favourite songs
-. Displayed all favourite albums
-. Displayed all favourite artits
-. Displayed all songs of a album
-. Displayed all songs of a artist
+. Signin/Signup option for a user
+. Can add favoutites to a song
+. Displayed all favourite songs in one place
+. Displayed all favourite albums in one place
+. Displayed all favourite artits in one place
+. Displayed all songs of a album in one place
+. Displayed all songs of a artist in one place
 . Created api for songs, albums, artists, and users
 
 Some Key Points -
